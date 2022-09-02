@@ -68,6 +68,8 @@
         }
     };
 
+    function isOpen(ws) { return ws.readyState === ws.OPEN }
+
     // Function which grabs content from '#chat-message-input', reads its value, prints it out in the console (whenever a new message is sent), and sends it in JSON format to the socket. Afterwards, the value gets reset to '':
     document.querySelector('#chat-message-submit').onclick = function(e) {
         e.preventDefault()  // Preventing csrf token error
@@ -80,7 +82,7 @@
             'username': userName,
             'room': roomName
         })
-
+        if(!isOpen(chatSocket)) return;
         chatSocket.send(JSON.stringify({
             'message': message,
             'username': userName,
