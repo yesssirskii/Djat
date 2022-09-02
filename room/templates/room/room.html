@@ -18,6 +18,7 @@
 
     <div>
         <form method="post" action=".">
+            {% csrf_token %}
             <input type="text" name="content" placeholder="Message {{ room.name }}..." id="chat-message-input">
             <button id="chat-message-submit">Send</button>
         </form>
