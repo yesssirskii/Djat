@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z1$5&32-5&%debc8on((tq#l0z+b#58v_jv=g0la#we6icr3p2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['djat.herokuapp.com']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
