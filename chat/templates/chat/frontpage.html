@@ -3,7 +3,7 @@
 {% block title %}Welcome | {% endblock %}
 
 {% block content %}
-<div class = "frontpage">
+<div class = "frontpage animated fadeInUp animatedFadeInUp">
     {% if request.user.is_authenticated %}
         <h1 style = "font-weight: bold;">Welcome to Djat, {{ request.user.username }}!</h1>
         <p>Djat is a simple chat app created using Django. <br> Users can sign up, choose a Djat (a.k.a "chat room") and start communicating with random people around the world!<br><br> Great, you're logged in!<br>Click 'Djats' to get started.</p>
@@ -11,5 +11,6 @@
         <h1 style = "font-weight: bold;">Welcome to Djat!</h1>
         <p>Djat is a simple chat app created using Django. <br> Users can sign up, choose a Djat (a.k.a "chat room") and start communicating with random people around the world!<br><br>Hmmm... seems like we don't know you yet.<br>Please log in or sign up to continue.</p>
     {% endif %}
+    <p>If you're interested in how I made this project, here's the <a href = "https://github.com/IvanMatejcic/Djat">source code.</a></p>
 </div>
 {% endblock %}

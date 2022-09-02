@@ -29,6 +29,7 @@
                 display: block;
                 padding: 14px 16px;
                 text-decoration: none;
+                transition: 0.3s;
             }
 
             a:visited{
@@ -36,7 +37,7 @@
             }
 
             a:hover{
-                color: gray;
+                color: rgb(190, 175, 175);
                 transition: 0.3s;
             }
 
@@ -124,14 +125,17 @@
                 -webkit-backdrop-filter: blur(6.2px);
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 padding-bottom: 20px;
+                transition: 0.3s;
             }
 
-            room:hover{
-                transform: scale(1.2);
+            .room:hover{
+                transition: 0.3s;
+                transform: scale(1.1);
             }
 
             .join-room{
                 text-decoration: none;
+                transition: 0.3s;
             }
 
             input{
@@ -175,7 +179,7 @@
             }
 
             button:hover{
-                color: #cdc7c7;
+                color: #e4dcdc;
                 transition: 0.3s;
             }
 
@@ -201,6 +205,48 @@
                 top: 0;
                 width: 100%;
             }
+
+            /* Text animation on load:*/
+
+            @keyframes fadeInUp {
+                from {
+                    transform: translate3d(0,40px,0)
+                }
+
+                to {
+                    transform: translate3d(0,0,0);
+                    opacity: 1
+                }
+            }
+
+            @-webkit-keyframes fadeInUp {
+                from {
+                    transform: translate3d(0,40px,0)
+                }
+
+                to {
+                    transform: translate3d(0,0,0);
+                    opacity: 1
+                }
+            }
+
+            .animated {
+                animation-duration: 1s;
+                animation-fill-mode: both;
+                -webkit-animation-duration: 1s;
+                -webkit-animation-fill-mode: both;
+            }
+
+            .animatedFadeInUp {
+                opacity: 0
+            }
+
+            .fadeInUp {
+                opacity: 0;
+                animation-name: fadeInUp;
+                -webkit-animation-name: fadeInUp;
+            }
+
 
         </style>
     </head>
