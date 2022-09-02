@@ -1,0 +1,1 @@
+web: gunicorn Djat.wsgi --log-file -
