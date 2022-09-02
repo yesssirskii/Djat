@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-z1$5&32-5&%debc8on((tq#l0z+b#58v_jv=g0la#we6icr3p2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djat.herokuapp.com']
+ALLOWED_HOSTS = ['djat.herokuapp.com', '127.0.0.1']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
@@ -80,10 +79,7 @@ ASGI_APPLICATION = 'Djat.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.Djat.RedisChannelLayer',
-        "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL')],
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }
 
