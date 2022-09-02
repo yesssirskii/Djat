@@ -1,1 +1,1 @@
-web: gunicorn Djat.wsgi --log-file -
+web: daphne Djat.asgi:application --port $PORT --bind 0.0.0.0
