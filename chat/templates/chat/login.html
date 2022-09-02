@@ -1,0 +1,38 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}Log in | {% endblock %}
+
+{% block content %}
+<div class = "frontpage2">
+    <div class = "login">
+        <div>
+            <h1>Log into Djat!</h1>
+            <p>If you're an already existing user, please enter your credentials.</p>
+        </div>
+
+        <form method="post" action=".">
+            {% csrf_token %}
+
+            <div>
+                <input type="text" name="username" placeholder = "Username...">
+            </div>
+
+            <div>
+                <input type="password" name="password" placeholder = "Password...">
+            </div>
+
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %} 
+                        <div>
+                            <p>{{ error|escape }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <button class = "log-in-button">Log in</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

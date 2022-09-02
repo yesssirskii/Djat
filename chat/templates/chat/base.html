@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}Djat</title>
+
+        <style>
+            .messages {
+                height: 400px;
+                overflow-y: auto;
+            }
+
+            ul{
+                list-style-type: none;
+                display: flex;
+                gap: 3rem;
+                justify-content: center;
+                position: -webkit-sticky; /* For Safari's sake.*/
+                position: sticky;
+                overflow: hidden;
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            li a {
+                text-align: center;
+                display: block;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            a:visited{
+                color: white;
+            }
+
+            a:hover{
+                color: gray;
+                transition: 0.3s;
+            }
+
+            .frontpage{
+                text-align: center;
+                width: 100%;
+                margin-top: 15%;
+                margin-bottom: 30%;
+            }
+
+            .frontpage2{
+                text-align: center;
+                width: 100%;
+                margin-top: 10%;
+                margin-bottom: 35%;
+            }
+
+            .frontpage3{
+                text-align: center;
+                width: 100%;
+                margin-top: 5%;
+                margin-bottom: 35%;
+            }
+
+            h1{
+                font-size: 40px;
+                color: white;
+            }
+
+            h2{
+                color: white;
+            }
+
+            p{
+                font-size: 20px;
+                color: white;
+            }
+
+            body{
+                font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+                background: linear-gradient(270deg, #3d4f98, #d72f2f);
+                background-size: 400% 400%;
+                width: 100%;
+                top: 0;
+                margin: 0 auto;
+
+                -webkit-animation: AnimationName 30s ease infinite;
+                -moz-animation: AnimationName 30s ease infinite;
+                animation: AnimationName 30s ease infinite;
+            }
+
+            @-webkit-keyframes AnimationName {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+            @-moz-keyframes AnimationName {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+            @keyframes AnimationName {
+                0%{background-position:0% 50%}
+                50%{background-position:100% 50%}
+                100%{background-position:0% 50%}
+            }
+
+            .rooms{
+                display: grid;
+                grid-template-columns: 25% 25% 25% 25%;
+                margin: 5%;
+            }
+
+            .room{
+                border-radius: 20px;
+                margin: 10%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding-bottom: 20px;
+            }
+
+            .join-room{
+                text-decoration: none;
+            }
+
+            input{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 10px;
+                margin-top: 20px;
+                margin-right: 10px;
+            }
+
+            #chat-messages{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 10px;
+                justify-content: center;
+                margin-left: 35%;
+                margin-right: 35%;
+            }
+
+            ::placeholder{
+                color: white;
+            }
+
+            button{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 10px;
+                color: white;
+            }
+
+            button:hover{
+                color: #cdc7c7;
+                transition: 0.3s;
+            }
+
+            .log-in-button{
+                margin-top: 20px;
+            }
+
+            .login{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding-bottom: 30px;
+                justify-content: center;
+                margin-left: 35%;
+                margin-right: 35%;
+            }
+
+            .sticky {
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <ul>
+            <li><a class = "title" href="/">Djat</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="/rooms/">Djats</a></li>
+                <li><a href="/logout/">Log out</a></li>
+            {% else %}
+                <li><a href="/login/">Log in</a></li>
+                <li><a href="/signup/">Sign up</a></li>
+            {% endif %}
+        </ul>
+
+        {% block content %}
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>

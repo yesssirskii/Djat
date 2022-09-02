@@ -1,0 +1,42 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}Sign up | {% endblock %}
+
+{% block content %}
+<div class = "frontpage2">
+    <div class = "login">
+        <div>
+            <h1>Sign up to Djat!</h1>
+            <p>Hello, new potential user! We're glad to have you here!</p>
+        </div>
+
+        <form method="post" action=".">
+            {% csrf_token %}
+
+            <div>
+                <input type="text" name="username" placeholder = "Username...">
+            </div>
+
+            <div>
+                <input type="password" name="password1" placeholder = "Password...">
+            </div>
+
+            <div>
+                <input type="password" name="password2" placeholder = "Repeat password...">
+            </div>
+
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %} 
+                        <div>
+                            <p>{{ error|escape }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            <button class = "log-in-button">Sign up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

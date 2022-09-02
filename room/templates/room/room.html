@@ -1,0 +1,103 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}{{ room.name }} | {% endblock %}
+
+{% block content %}
+<div class = "frontpage3">
+    <div>
+        <h1>{{ room.name }}</h1>
+    </div>
+
+    <div>
+        <div id="chat-messages">
+            {% for m in messages %}
+            <p><b>{{ m.user.username }}</b>: {{ m.content }}<br></p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <form method="post" action=".">
+            <input type="text" name="content" placeholder="Message {{ room.name }}..." id="chat-message-input">
+            <button id="chat-message-submit">Send</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ room.slug|json_script:"json-roomname" }}
+{{ request.user.username|json_script:"json-username" }}
+
+<script>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    // Creating a new WebSocket object:
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onclose = function(e) {
+        console.log('onclose')
+    }
+
+    // Function which parses the data, aka the message content and if content != 0, we generate the HTML neccessary to display the newly typed message and activate the function to scroll to the bottom of that message element:
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+
+        if (data.message) {
+            document.querySelector('#chat-messages').innerHTML += ( '<p> <b>' + data.username + '</b>: ' + data.message + '<br></p>');
+        } else {
+            alert('The message was empty!')
+        }
+
+        scrollToBottom();
+    };
+
+    // Making it that if the user clicks enter, the message is also sent (simulating clicking the 'Send' button):
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    // Function which grabs content from '#chat-message-input', reads its value, prints it out in the console (whenever a new message is sent), and sends it in JSON format to the socket. Afterwards, the value gets reset to '':
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        e.preventDefault()  // Preventing csrf token error
+
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+
+        console.log({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        })
+
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'username': userName,
+            'room': roomName
+        }));
+
+        messageInputDom.value = '';
+
+        return false
+    };
+
+   // Function which grabs the messages element, and scrolls to the bottom of it (making it easier to view all the messages after the user has sent one of his own):
+    function scrollToBottom() {
+        let objDiv = document.getElementById("chat-messages");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+    // Triggering the function:
+    scrollToBottom();
+</script>
+{% endblock %}

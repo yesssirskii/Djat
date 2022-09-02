@@ -1,0 +1,25 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}Rooms | {% endblock %}
+
+{% block content %}
+
+<div class = "frontpage2">
+
+    <div>
+        <h1>Choose a Djat, {{ request.user.username }}!</h1>
+        <p>Choose a Djat which suits you the most and start typing.</p>
+    </div>
+
+    <div class = "rooms">
+        {% for room in rooms %}
+            <div class = "room">
+                <div>
+                    <h2>{{ room.name }}</h2>
+                    <a class = "join-room" href="{% url 'room' room.slug %}">Get in!</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
