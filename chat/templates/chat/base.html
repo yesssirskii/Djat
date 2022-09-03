@@ -134,9 +134,10 @@
                 transform: scale(1.1);
             }
 
-            .join-room{
+            a.join-room{
                 text-decoration: none;
                 transition: 0.3s;
+                display: block;
             }
 
             input{
@@ -202,14 +203,18 @@
                 margin-right: 35%;
             }
 
-            .sticky {
-                position: fixed;
-                top: 0;
-                width: 100%;
-            }
-
             .message-and-username{
                 padding: 0px 15px 10px 15px ;
+            }
+
+            .input-wrapper{
+                position: fixed;
+                bottom: 20px;
+                left: 0;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
             }
 
             #chat-message-submit{
@@ -286,6 +291,10 @@
                     #chat-messages, .login{
                         margin: 0px 15px 0px 15px;
                     }
+
+                    .message-and-username{
+                        margin: 0px 0px 0px 0px;
+                    }
             }
 
 
@@ -294,7 +303,7 @@
 
     <body>
         <ul>
-            <li><a class = "title" href="/">Djat</a></li>
+            <li><a href="/">Djat</a></li>
             {% if request.user.is_authenticated %}
                 <li><a href="/rooms/">Djats</a></li>
                 <li><a href="/logout/">Log out</a></li>
