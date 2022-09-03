@@ -159,8 +159,10 @@
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 padding: 10px;
                 justify-content: center;
-                margin-left: 35%;
-                margin-right: 35%;
+                margin-left: 30%;
+                margin-right: 30%;
+                text-align: left;
+                display: inline-block;
             }
 
             ::placeholder{
@@ -206,6 +208,19 @@
                 width: 100%;
             }
 
+            .message-and-username{
+                padding: 0px 15px 0px 15px ;
+            }
+
+            #chat-message-submit{
+                transition: 0.3s;
+            }
+
+            #chat-message-submit:hover{
+                transform: scale(1.1);
+                transition: 0.3s;
+            }
+
             /* Text animation on load:*/
 
             @keyframes fadeInUp {
@@ -233,7 +248,7 @@
             .animated {
                 animation-duration: 1s;
                 animation-fill-mode: both;
-                -webkit-animation-duration: 1s;
+                -webkit-animation-duration: 1s; 
                 -webkit-animation-fill-mode: both;
             }
 
@@ -245,6 +260,32 @@
                 opacity: 0;
                 animation-name: fadeInUp;
                 -webkit-animation-name: fadeInUp;
+            }
+
+            @media only screen and (max-width: 600px) {
+                    .rooms{
+                        grid-template-columns: 50% 50%;
+                    }
+
+                    h1{
+                        font-size: 30px;
+                    }
+
+                    h2{
+                        font-size: 20px;
+                    }
+
+                    p{
+                        font-size: 15px;
+                    }
+
+                    .join-room{
+                        font-size: 15px;
+                    }
+
+                    #chat-messages{
+                        margin: 0px 15px 0px 15px;
+                    }
             }
 
 

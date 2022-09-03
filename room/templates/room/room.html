@@ -8,16 +8,14 @@
         <h1>{{ room.name }}</h1>
     </div>
 
-    <div>
-        <div id="chat-messages">
-            {% for m in messages %}
-            <p><b>{{ m.user.username }}</b>: {{ m.content }}<br></p>
-            {% endfor %}
-        </div>
+    <div id="chat-messages">
+        {% for m in messages %}
+        <p class = "message-and-username"><b>{{ m.user.username }}</b>: {{ m.content }}<br></p>
+        {% endfor %}
     </div>
-
+    
     <div>
-        <form method="post" action=".">
+        <form method="post" action="." class = "send-message-form">
             {% csrf_token %}
             <input type="text" name="content" placeholder="Message {{ room.name }}..." id="chat-message-input">
             <button id="chat-message-submit">Send</button>
