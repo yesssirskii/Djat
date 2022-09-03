@@ -14,15 +14,15 @@
             {% csrf_token %}
 
             <div>
-                <input type="text" name="username" placeholder = "Username...">
+                <input type="text" name="username" placeholder = "Username..." class = "log-in">
             </div>
 
             <div>
-                <input type="password" name="password1" placeholder = "Password...">
+                <input type="password" name="password1" placeholder = "Password..." class = "log-in">
             </div>
 
             <div>
-                <input type="password" name="password2" placeholder = "Repeat password...">
+                <input type="password" name="password2" placeholder = "Repeat password..." class = "log-in">
             </div>
 
             {% if form.errors %}

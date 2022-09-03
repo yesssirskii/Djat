@@ -12,23 +12,38 @@
                 overflow-y: auto;
             }
 
-            ul{
-                list-style-type: none;
+            nav{
                 display: flex;
-                gap: 3rem;
                 justify-content: center;
-                position: -webkit-sticky; /* For Safari's sake.*/
-                position: sticky;
-                overflow: hidden;
-                font-size: 15px;
-                font-weight: bold;
             }
 
-            li a {
-                text-align: center;
-                display: block;
-                padding: 14px 16px;
+            ul{
+                display: flex;
+                list-style-type: none;
+            }
+
+            ul li{
+                padding: 20px;
+            }
+
+            ul li a{
                 text-decoration: none;
+            }
+
+            .nav-items{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                justify-content: center;
+                margin: 0px 5px 0px 5px;
+                transition: 0.3s;
+            }
+
+            .nav-items:hover{
+                transform: scale(1.05);
                 transition: 0.3s;
             }
 
@@ -37,7 +52,6 @@
             }
 
             a:hover{
-                color: rgb(190, 175, 175);
                 transition: 0.3s;
             }
 
@@ -59,7 +73,6 @@
                 text-align: center;
                 width: 100%;
                 margin-top: 2%;
-                margin-bottom: 35%;
             }
 
             h1{
@@ -164,6 +177,8 @@
                 margin: 2% 30% 0% 30%;
                 text-align: left;
                 display: inline-block;
+                overflow: scroll;
+                overflow-x:hidden;
             }
 
             ::placeholder{
@@ -186,8 +201,18 @@
                 transition: 0.3s;
             }
 
+            .log-in{
+                outline: none;
+            }
+
             .log-in-button{
                 margin-top: 20px;
+                transition: 0.3s;
+            }
+
+            .log-in-button:hover{
+                transform: scale(1.05);
+                transition: 0.3s;
             }
 
             .login{
@@ -205,6 +230,16 @@
 
             .message-and-username{
                 padding: 0px 15px 10px 15px ;
+            }
+
+            .message-and-username:hover{
+               /* From https://css.glass */
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: 5px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(0px);
+                -webkit-backdrop-filter: blur(0px);
+                cursor: default;
             }
 
             .input-wrapper{
@@ -225,6 +260,10 @@
                 transform: scale(1.1);
                 transition: 0.3s;
             }
+
+        #chat-message-input{
+            outline: none;
+        }
 
             /* Text animation on load:*/
 
@@ -302,21 +341,28 @@
     </head>
 
     <body>
-        <ul>
-            <li><a href="/">Djat</a></li>
+        <nav>
             {% if request.user.is_authenticated %}
-                <li><a href="/rooms/">Djats</a></li>
-                <li><a href="/logout/">Log out</a></li>
-            {% else %}
-                <li><a href="/login/">Log in</a></li>
-                <li><a href="/signup/">Sign up</a></li>
+            <ul class = "user">
+                <li style = "color: white; font-weight: bold;">{{ request.user.username}}</li>
+            </ul>
             {% endif %}
-        </ul>
+            <ul>
+                <li class = "nav-items"><a href="/">Djat</a></li>
+                {% if request.user.is_authenticated %}
+                    <li class = "nav-items"><a href="/rooms/">Djats</a></li>
+                    <li class = "nav-items"><a href="/logout/">Log out</a></li>
+                {% else %}
+                    <li class = "nav-items"><a href="/login/">Log in</a></li>
+                    <li class = "nav-items"><a href="/signup/">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+            {% block content %}
+            {% endblock %}
 
-        {% block content %}
-        {% endblock %}
-
-        {% block scripts %}
-        {% endblock %}
+            {% block scripts %}
+            {% endblock %}
+        
     </body>
 </html>
