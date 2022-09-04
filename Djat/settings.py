@@ -89,10 +89,13 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'dei0hrdeqish83', 
+        'HOST' : 'ec2-23-23-151-191.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'ajlwaowrblgxzd',
+        'PASSWORD': 'a3626fbffb6a050eaef6fab1933e1a060c8d4924189529d124841b9cef8c23e9',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
