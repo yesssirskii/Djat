@@ -88,7 +88,7 @@ CHANNEL_LAYERS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dei0hrdeqish83', 
         'HOST' : 'ec2-23-23-151-191.compute-1.amazonaws.com',
         'PORT' : 5432,
