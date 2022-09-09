@@ -23,6 +23,7 @@
             }
 
             ul li{
+                display: flex;
                 padding: 20px;
             }
 
@@ -30,16 +31,10 @@
                 text-decoration: none;
             }
 
-            .nav-items{
-                background: rgba(255, 255, 255, 0.2);
-                border-radius: 16px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(6.2px);
-                -webkit-backdrop-filter: blur(6.2px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                justify-content: center;
-                margin: 0px 5px 0px 5px;
-                transition: 0.3s;
+            .main-nav{
+                display: flex;
+                margin-left: auto;
+                margin-right: 20px;
             }
 
             .nav-items:hover{
@@ -342,7 +337,7 @@
                 <li style = "color: white; font-weight: bold;">{{ request.user.username}}</li>
             </ul>
             {% endif %}
-            <ul>
+            <ul class="main-nav">
                 <li class = "nav-items"><a href="/">Djat</a></li>
                 {% if request.user.is_authenticated %}
                     <li class = "nav-items"><a href="/rooms/">Djats</a></li>
