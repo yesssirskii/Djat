@@ -1,5 +1,8 @@
+from msilib.schema import ListView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from django.contrib.auth import get_user_model
 
 from .models import Room, Message
 
@@ -15,3 +18,5 @@ def room(request, slug):
     messages = Message.objects.filter(room=room)[0:25]
 
     return render(request, 'room/room.html', {'room': room, 'messages': messages})
+
+

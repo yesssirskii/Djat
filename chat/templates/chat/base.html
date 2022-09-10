@@ -176,7 +176,12 @@
                 min-height: 900px;
                 max-height: 900px;
                 padding-bottom: auto;
-                overflow: auto;
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+
+            #chat-messages::-webkit-scrollbar{
+                width: 20px;
             }
 
             ::placeholder{
