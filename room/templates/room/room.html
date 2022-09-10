@@ -10,7 +10,7 @@
 
     <div id="chat-messages">
         {% for m in messages %}
-            <p class = "message-and-username" style="padding:10px;"><b style="font-size: 20px;">{{ m.user.username }}</b> <b style="font-size:12px;">{{m.date_added }}</b> <br> {{ m.content }}<br></p>
+            <div class = "message-and-username" style="padding:10px; margin: auto; color: white;"><b style="font-size: 20px;">{{ m.user.username }}</b> <b style="font-size:12px;">{{m.date_added }}</b> <br> {{ m.content }}<br></div>
         {% endfor %}
     </div>
     
@@ -39,7 +39,9 @@
         `wss://${window.location.host}/ws/${roomName}/`
     );
 
-    chatSocket.onopen = function (event) {     console.log('connected'); };
+    chatSocket.onopen = function (event) {
+        console.log('connected');
+    };
 
     chatSocket.onclose = function(e) {
         console.log('onclose')
@@ -50,7 +52,7 @@
         const data = JSON.parse(e.data);
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ( '<p> <b>' + data.username + '</b>: ' + data.message + '<br></p>');
+            document.querySelector('#chat-messages').innerHTML += ( '<p class = "message-and-username" style="padding:10px;"><b style="font-size: 20px;">' + data.username + '</b> <b style="font-size:12px;">' + data.date_added + '</b> <br>' + data.message + '<br></p>');
         } else {
             alert('The message was empty!')
         }
@@ -89,7 +91,7 @@
 
         messageInputDom.value = '';
 
-        return false
+        return false;
     };
 
    // Function which grabs the messages element, and scrolls to the bottom of it (making it easier to view all the messages after the user has sent one of his own):
