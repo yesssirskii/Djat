@@ -10,7 +10,7 @@
 
     <div id="chat-messages">
         {% for m in messages %}
-            <p class = "message-and-username"><b>{{ m.user.username }}</b>: {{ m.content }}<br></p>
+            <p class = "message-and-username" style="padding:10px;"><b style="font-size: 20px;">{{ m.user.username }}</b> <b style="font-size:12px;">{{m.date_added }}</b> <br> {{ m.content }}<br></p>
         {% endfor %}
     </div>
     
