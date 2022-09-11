@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 
 from .models import Room, Message
 
@@ -14,8 +14,17 @@ def rooms(request):
 @login_required
 def room(request, slug):
     room = Room.objects.get(slug=slug)
-    messages = Message.objects.filter(room=room)[0:25]
+    messages = Message.objects.filter(room=room)
 
     return render(request, 'room/room.html', {'room': room, 'messages': messages})
+
+def getAllUsers(request):
+    allUsers = User.objects.all()
+    context = {
+        'all_users': allUsers
+    }
+
+    return render(request, 'room/room/html', context)
+
 
 

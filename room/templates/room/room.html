@@ -12,7 +12,7 @@
         <h1 style="margin-left: 5px;">This is the beginning of the #{{ room.name }} channel!</h1>
         <h4 style="color: white; margin-left: 10px; margin-top: -15px;">Say something, Don't be shy!</h4><hr>
         {% for m in messages %}
-            <div class = "message-and-username" style="padding:10px; margin: auto; color: white;"><b style="font-size: 20px;">{{ m.user.username }} </b><b style="font-size:12px;">{{m.date_added }}</b><br>{{ m.content }}<br></div>
+            <div class = "message-and-username" style="padding:10px; margin: auto; color: white;"><b style="font-size: 20px;">{{ m.user.username }} </b><b style="font-size:12px;">{{m.date_added }}</b><br style="font-size: 22px;">{{ m.content }}<br></div>
         {% endfor %}
     </div>
    
@@ -24,6 +24,9 @@
                 <button id="chat-message-submit">Send</button>
             </div>
         </form>
+        {% for n in allUsers %}
+            <p>{{ n.user.username }}</p>
+        {% endfor %}
     </div>
 </div>
 
@@ -56,7 +59,7 @@
         const data = JSON.parse(e.data);
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ( '<p class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br>' + data.message + '<br></p>');
+            document.querySelector('#chat-messages').innerHTML += ( '<p class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br>' + data.message + '<br style="font-size: 22px;"></p>');
         } else {
             alert('The message was empty!')
         }
