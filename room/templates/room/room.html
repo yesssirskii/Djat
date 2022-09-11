@@ -6,6 +6,9 @@
 <div class = "frontpage3">
     <div>
         <h1>{{ room.name }}</h1>
+        {% for result in getAllUsers %}
+            <p>{{result.username}}</p>
+        {% endfor %}
     </div>
 
     <div id="chat-messages">
@@ -24,9 +27,7 @@
                 <button id="chat-message-submit">Send</button>
             </div>
         </form>
-        {% for n in allUsers %}
-            <p>{{ n.user.username }}</p>
-        {% endfor %}
+        
     </div>
 </div>
 
@@ -59,7 +60,7 @@
         const data = JSON.parse(e.data);
 
         if (data.message) {
-            document.querySelector('#chat-messages').innerHTML += ( '<p class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br>' + data.message + '<br style="font-size: 22px;"></p>');
+            document.querySelector('#chat-messages').innerHTML += ( '<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
             alert('The message was empty!')
         }
