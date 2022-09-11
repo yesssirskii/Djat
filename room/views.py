@@ -1,8 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-
 from django.contrib.auth.models import User
-
 from .models import Room, Message
 
 @login_required # For function to work, user needs to be logged in.
@@ -24,7 +22,9 @@ def getAllUsers(request):
         'all_users': allUsers
     }
 
-    return render(request, 'room/room/html', context)
+    return render(request, 'room/room.html', context)
+
+
 
 
 

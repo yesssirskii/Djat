@@ -50,11 +50,35 @@
                 transition: 0.3s;
             }
 
+            
+            .floating { 
+                animation-name: floating;
+                animation-duration: 3s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+                margin-left: 30px;
+                margin-top: 5px;
+            }
+            
+            @keyframes floating {
+                0% { transform: translate(0,  0px); }
+                50%  { transform: translate(0, 20px); }
+                100%   { transform: translate(0, -0px); }   
+            }
+
             .frontpage{
                 text-align: center;
                 width: 100%;
-                margin-top: 15%;
-                margin-bottom: 30%;
+
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                width: 50%;
+                margin: 10% auto auto auto;
+                padding-bottom: 30px;
             }
 
             .frontpage2{
@@ -118,7 +142,7 @@
             .rooms{
                 display: grid;
                 grid-template-columns: 25% 25% 25% 25%;
-                margin: 5%;
+                margin: 0% 5% 5% 5%;
             }
 
             .room{
@@ -138,7 +162,28 @@
                 transition: 0.3s;
             }
 
+            .new-room{
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
+                backdrop-filter: blur(6.2px);
+                -webkit-backdrop-filter: blur(6.2px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                margin-top: 30px;
+                width: 2%;
+                height: 30px;
+                margin-left: auto;
+                margin-right: auto;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+
             .room:hover{
+                transition: 0.3s;
+                transform: scale(1.1);
+            }
+
+            .new-room:hover{
                 transition: 0.3s;
                 transform: scale(1.1);
             }
@@ -147,6 +192,10 @@
                 text-decoration: none;
                 transition: 0.3s;
                 display: block;
+            }
+
+            a.join-room:hover{
+                text-decoration: underline;
             }
 
             input{
