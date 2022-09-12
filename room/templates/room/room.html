@@ -64,10 +64,9 @@
         content=data.message;
 
         // Acessing the {{ date_added }} Django template variable so it can be used inside JS code:
-        var dateAdded= "{{date_added}}";
 
         if (content.length !== 0) {
-            document.querySelector('#chat-messages').innerHTML += ('<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + dateAdded + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
+            document.querySelector('#chat-messages').innerHTML += ('<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
             alert('Empty message. Please try again.');
         }
