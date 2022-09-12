@@ -65,8 +65,6 @@
 
         console.log(data);
 
-        // Acessing the {{ date_added }} Django template variable so it can be used inside JS code:
-
         if (content.length !== 0) {
             document.querySelector('#chat-messages').innerHTML += ('<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
@@ -102,7 +100,8 @@
         chatSocket.send(JSON.stringify({
         'message': message,
         'username': userName,
-        'room': roomName
+        'room': roomName,
+        'date_added': date_added
         }));
     
         messageInputDom.value = '';
