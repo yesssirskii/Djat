@@ -58,10 +58,11 @@
     // Function which parses the data, aka the message content and if content != 0, we generate the HTML neccessary to display the newly typed message and activate the function to scroll to the bottom of that message element:
     chatSocket.onmessage = function(e) {
         const data = JSON.parse(e.data);
+        content=data.message;
 
-        if (data.message) {
+        if (content) {
             document.querySelector('#chat-messages').innerHTML += ( '<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
-        } else if ( data.message.value == 0) {
+        } else if ( content.length === 0) {
             alert('Empty message. Please try again.');
             return;
         }
