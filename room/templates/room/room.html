@@ -31,6 +31,7 @@
     </div>
 </div>
 
+{{ variable|json_script:'date_added' }}
 
 {% endblock %}
 
@@ -41,6 +42,8 @@
 <script>
     const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
     const userName = JSON.parse(document.getElementById('json-username').textContent);
+
+    var js_variable = JSON.parse(document.getElementById('date_added').textContent);
 
     // Creating a new WebSocket object:
     const chatSocket = new WebSocket(
@@ -61,10 +64,10 @@
         content=data.message;
 
         // Acessing the {{ date_added }} Django template variable so it can be used inside JS code:
-        var dateAdded= "{{ date_added }}";
+        var dateAdded= "{{date_added}}";
 
         if (content.length !== 0) {
-            document.querySelector('#chat-messages').innerHTML += ('<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + message.dateAdded + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
+            document.querySelector('#chat-messages').innerHTML += ('<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.js_variable + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
             alert('Empty message. Please try again.');
         }
