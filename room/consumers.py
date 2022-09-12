@@ -34,18 +34,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.save_message(username, room, message)
 
-        if(len(message)==0):
-            print("Message empty")
-        else:
-            # Send message to room group
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'message': message,
-                    'username': username
-                }
-            )
+
+        # Send message to room group
+        await self.channel_layer.group_send(
+            self.room_group_name,
+            {
+                'type': 'chat_message',
+                'message': message,
+                'username': username
+            }
+        )
 
     # Receive message from room group
     async def chat_message(self, event):
