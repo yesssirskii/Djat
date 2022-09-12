@@ -62,19 +62,18 @@
         if (data.message) {
             document.querySelector('#chat-messages').innerHTML += ( '<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
-            alert('The message was empty!')
+            alert('Empty message. Please try again.')
         }
-
         scrollToBottom();
     };
 
     // Making it that if the user clicks enter, the message is also sent (simulating clicking the 'Send' button):
-    document.querySelector('#chat-message-input').focus();
+    /*document.querySelector('#chat-message-input').focus();
     document.querySelector('#chat-message-input').onkeyup = function(e) {
         if (e.keyCode === 13) {
             document.querySelector('#chat-message-submit').click();
         }
-    };
+    };*/
 
     function isOpen(ws) { return ws.readyState === ws.OPEN }
 
