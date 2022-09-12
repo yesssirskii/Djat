@@ -33,7 +33,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         room = data['room']
         date_added = data['date_added']
 
-        await self.save_message(username, room, message)
+        await self.save_message(username, room, message, date_added)
 
 
         # Send message to room group
