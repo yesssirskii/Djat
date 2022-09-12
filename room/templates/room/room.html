@@ -61,7 +61,7 @@
         content=data.message;
 
         if (content.length !== 0) {
-            document.querySelector('#chat-messages').innerHTML += ( '<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + data.date_added + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
+            document.querySelector('#chat-messages').innerHTML += ( '<div class = "message-and-username" style="padding:10px; margin:auto; color: white;"><b style="font-size: 20px;">' + data.username + '</b><b style="font-size:12px;">' + '{{ m.date_added }}' + '</b><br><b style="font-size: 22px; font-weight: normal;">' + data.message + '</b><br></div>');
         } else {
             alert('Empty message. Please try again.');
         }
@@ -92,19 +92,12 @@
             'room': roomName
         })
 
-        if(message.value===0){
-            alert('boo')
-            return;
-        }
-        else{
-            chatSocket.send(JSON.stringify({
-            'message': message,
-            'username': userName,
-            'room': roomName
-            }));
-        }
-        
-
+        chatSocket.send(JSON.stringify({
+        'message': message,
+        'username': userName,
+        'room': roomName
+        }));
+    
         messageInputDom.value = '';
 
         return false;
