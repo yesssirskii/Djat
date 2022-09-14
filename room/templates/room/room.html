@@ -104,6 +104,7 @@
         }));
     
         messageInputDom.value = '';
+        document.getElementById('chat-message-submit').disabled = true;
 
         return false;
     };
@@ -121,7 +122,6 @@
         else{
             document.getElementById('chat-message-submit').disabled = false;
         }
-        document.getElementById('chat-message-input').value == "";
     }
 
     // Triggering the function:
