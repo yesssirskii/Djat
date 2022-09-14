@@ -31,9 +31,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         message = data['message']
         username = data['username']
         room = data['room']
-        date_added = data['date_added']
 
-        await self.save_message(username, room, message, date_added)
+        await self.save_message(username, room, message)
 
 
         # Send message to room group
@@ -58,8 +57,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
 
     @sync_to_async
-    def save_message(self, username, room, message, date_added):
+    def save_message(self, username, room, message):
         user = User.objects.get(username=username)
         room = Room.objects.get(slug=room)
 
-        Message.objects.create(user=user, room=room, content=message, date_added=date_added)
+        Message.objects.create(user=user, room=room, content=message)
