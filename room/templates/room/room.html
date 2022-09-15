@@ -15,7 +15,7 @@
         <h1 style="margin-left: 5px;">This is the beginning of the #{{ room.name }} channel!</h1>
         <h4 style="color: white; margin-left: 10px; margin-top: -15px;">Say something, Don't be shy!</h4><hr>
         {% for m in messages %}
-            <div class = "message-and-username" style="padding:10px; margin: auto; color: white;"><b style="font-size: 20px;">{{ m.user.username }} </b><b style="font-size:12px;">{{ m.date_added }}</b><br><b style="font-size: 22px; font-weight: normal;">{{ m.content }}</b><br></div>
+            <div class = "message-and-username" style="padding:10px; margin: auto; color: white;"><b class = "username">{{ m.user.username }} </b><b class = "date_Added">{{ m.date_added }}</b><br><b class = "content">{{ m.content }}</b><br></div>
         {% endfor %}
     </div>
    

@@ -29,7 +29,7 @@
 
             ul li a{
                 text-decoration: none;
-                color: white;
+                color: white;                                                                                                                                                                                                                                                                                                                                                                            
             }
 
             .main-nav{
@@ -217,6 +217,19 @@
                 margin-right: 10px;
             }
 
+            b.username{
+                    font-size: 20px;
+            }
+
+            b.date_Added{
+                font-size: 12px;
+            }
+
+            b.content{
+                font-size: 22px;
+                font-weight: normal;
+            }
+
             #chat-messages{
                 background: rgba(255, 255, 255, 0.2);
                 border-radius: 16px;
@@ -320,76 +333,106 @@
             color: white;
         }
 
-            /* Text animation on load:*/
+        /* Text animation on load:*/
 
-            @keyframes fadeInUp {
-                from {
-                    transform: translate3d(0,40px,0)
+        @keyframes fadeInUp {
+            from {
+                transform: translate3d(0,40px,0)
+            }
+
+            to {
+                transform: translate3d(0,0,0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes fadeInUp {
+            from {
+                transform: translate3d(0,40px,0)
+            }
+
+            to {
+                transform: translate3d(0,0,0);
+                opacity: 1
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s; 
+            -webkit-animation-fill-mode: both;
+        }
+
+        .animatedFadeInUp {
+            opacity: 0
+        }
+
+        .fadeInUp {
+            opacity: 0;
+            animation-name: fadeInUp;
+            -webkit-animation-name: fadeInUp;
+        }
+
+        @media only screen and (max-width: 600px) {
+                .frontpage{
+                    width: 80%;
                 }
 
-                to {
-                    transform: translate3d(0,0,0);
-                    opacity: 1
-                }
-            }
-
-            @-webkit-keyframes fadeInUp {
-                from {
-                    transform: translate3d(0,40px,0)
+                .main-nav{
+                    margin-right: 40px;
                 }
 
-                to {
-                    transform: translate3d(0,0,0);
-                    opacity: 1
+                .user{
+                    padding-left: 50px;
                 }
-            }
 
-            .animated {
-                animation-duration: 1s;
-                animation-fill-mode: both;
-                -webkit-animation-duration: 1s; 
-                -webkit-animation-fill-mode: both;
-            }
+                .rooms{
+                    grid-template-columns: 50% 50%;
+                }
 
-            .animatedFadeInUp {
-                opacity: 0
-            }
+                h1{
+                    font-size: 30px;
+                }
 
-            .fadeInUp {
-                opacity: 0;
-                animation-name: fadeInUp;
-                -webkit-animation-name: fadeInUp;
-            }
+                h2{
+                    font-size: 20px;
+                }
 
-            @media only screen and (max-width: 600px) {
-                    .rooms{
-                        grid-template-columns: 50% 50%;
-                    }
+                p{
+                    font-size: 15px;
+                }
 
-                    h1{
-                        font-size: 30px;
-                    }
+                .join-room{
+                    font-size: 15px;
+                }
 
-                    h2{
-                        font-size: 20px;
-                    }
+                .login{
+                    margin: 0px 15px 0px 15px;
+                }
 
-                    p{
-                        font-size: 15px;
-                    }
+                #chat-messages{
+                    max-width: 90%;
+                    min-height: 500px;
+                    max-height: 550px;
+                }
 
-                    .join-room{
-                        font-size: 15px;
-                    }
+                b.username{
+                    font-size: 15px;
+                }
 
-                    #chat-messages, .login{
-                        margin: 0px 15px 0px 15px;
-                    }
+                b.date_Added{
+                    font-size: 10px;
+                }
 
-                    .message-and-username{
-                        margin: 0px 0px 0px 0px;
-                    }
-            }
+                b.content{
+                    font-size: 17px;
+                }
+
+                .message-and-username{
+                    margin: 0px 0px 0px 0px;
+                }
+        }
 
 
         </style>
