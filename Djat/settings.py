@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
-from decouple import config
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = False
 
@@ -81,11 +81,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dei0hrdeqish83', 
-        'HOST' : 'ec2-23-23-151-191.compute-1.amazonaws.com',
+        'NAME': os.getenv('NAME'), 
+        'HOST' : os.getenv('HOST'),
         'PORT' : 5432,
-        'USER' : 'ajlwaowrblgxzd',
-        'PASSWORD': 'a3626fbffb6a050eaef6fab1933e1a060c8d4924189529d124841b9cef8c23e9',
+        'USER' : os.getenv('USER'),
+        'PASSWORD': os.getenv('PASSWORD'),
     }
 }
 
